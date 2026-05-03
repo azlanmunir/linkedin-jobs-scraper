@@ -104,6 +104,83 @@ def report_command(
     typer.echo(json.dumps(payload, indent=2))
 
 
+@app.command(name="status")
+def status_command(
+    run_id: RunIdOption,
+    config: ConfigOption = Path("configs/market_us_tech.yaml"),
+) -> None:
+    """Print run progress from DuckDB."""
+    loaded = load_config(config)
+    store = JobStore(loaded.database_path)
+    query_rows = store.conn.execute(
+        """
+        SELECT status, COUNT(*)
+        FROM search_queries
+        WHERE run_id = ?
+        GROUP BY status
+        ORDER BY status
+        """,
+        [run_id],
+    ).fetchall()
+    failed_queries = store.conn.execute(
+        """
+        SELECT city_name, keyword, experience_key, last_error
+        FROM search_queries
+        WHERE run_id = ? AND status = 'failed'
+        ORDER BY city_name, keyword, experience_key
+        LIMIT 10
+        """,
+        [run_id],
+    ).fetchall()
+    counts = {
+        "listing_snapshots": scalar_count(store, "listing_snapshots", run_id),
+        "job_details": scalar_count(store, "job_details", run_id),
+        "classifications": scalar_count(store, "classifications", run_id),
+        "quality_issues": scalar_count(store, "quality_issues", run_id),
+    }
+    unique_jobs_row = store.conn.execute(
+        "SELECT COUNT(DISTINCT job_id) FROM listing_snapshots WHERE run_id = ?",
+        [run_id],
+    ).fetchone()
+    unique_jobs = int(unique_jobs_row[0]) if unique_jobs_row else 0
+    pending_details_row = store.conn.execute(
+        """
+        SELECT COUNT(*)
+        FROM (
+            SELECT DISTINCT job_id
+            FROM listing_snapshots
+            WHERE run_id = ?
+        ) jobs
+        LEFT JOIN job_details d ON d.run_id = ? AND d.job_id = jobs.job_id
+        WHERE d.job_id IS NULL
+        """,
+        [run_id, run_id],
+    ).fetchone()
+    pending_details = int(pending_details_row[0]) if pending_details_row else 0
+    store.close()
+    typer.echo(
+        json.dumps(
+            {
+                "run_id": run_id,
+                "queries": {row[0]: row[1] for row in query_rows},
+                "unique_jobs": unique_jobs,
+                "pending_details": pending_details,
+                **counts,
+                "failed_query_samples": [
+                    {
+                        "city": row[0],
+                        "keyword": row[1],
+                        "experience": row[2],
+                        "error": row[3],
+                    }
+                    for row in failed_queries
+                ],
+            },
+            indent=2,
+        )
+    )
+
+
 @app.command()
 def run(
     config: ConfigOption = Path("configs/market_us_tech.yaml"),
@@ -213,6 +290,11 @@ def classify_run(store: JobStore, run_id: str) -> int:
         )
         store.upsert_classification(classification)
     return len(jobs)
+
+
+def scalar_count(store: JobStore, table: str, run_id: str) -> int:
+    row = store.conn.execute(f"SELECT COUNT(*) FROM {table} WHERE run_id = ?", [run_id]).fetchone()
+    return int(row[0]) if row else 0
 
 
 if __name__ == "__main__":

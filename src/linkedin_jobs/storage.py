@@ -172,6 +172,39 @@ class JobStore:
             [run_id, config_hash, code_version, target_population, config_json, utc_now()],
         )
 
+    def ensure_run(
+        self,
+        *,
+        run_id: str,
+        config_hash: str,
+        code_version: str,
+        target_population: str,
+        config_json: str,
+    ) -> bool:
+        existing = self.conn.execute(
+            "SELECT config_hash FROM search_runs WHERE run_id = ?",
+            [run_id],
+        ).fetchone()
+        if not existing:
+            self.create_run(
+                run_id=run_id,
+                config_hash=config_hash,
+                code_version=code_version,
+                target_population=target_population,
+                config_json=config_json,
+            )
+            return False
+        if existing[0] != config_hash:
+            raise ValueError(
+                f"Run {run_id!r} already exists with a different config hash; "
+                "use a new run id for a changed config."
+            )
+        self.conn.execute(
+            "UPDATE search_runs SET status = 'running', ended_at = NULL WHERE run_id = ?",
+            [run_id],
+        )
+        return True
+
     def finish_run(self, run_id: str, status: str = "complete") -> None:
         self.conn.execute(
             "UPDATE search_runs SET status = ?, ended_at = ? WHERE run_id = ?",
@@ -179,7 +212,43 @@ class JobStore:
         )
 
     def upsert_query(self, query: SearchQuery) -> None:
-        self.conn.execute("DELETE FROM search_queries WHERE query_id = ?", [query.query_id])
+        existing = self.conn.execute(
+            "SELECT 1 FROM search_queries WHERE query_id = ?",
+            [query.query_id],
+        ).fetchone()
+        if existing:
+            self.conn.execute(
+                """
+                UPDATE search_queries
+                SET run_id = ?,
+                    city_key = ?,
+                    city_name = ?,
+                    location = ?,
+                    keyword = ?,
+                    role_family_key = ?,
+                    experience_key = ?,
+                    experience_param = ?,
+                    time_window_days = ?,
+                    target_weight = ?,
+                    url = ?
+                WHERE query_id = ?
+                """,
+                [
+                    query.run_id,
+                    query.city_key,
+                    query.city_name,
+                    query.location,
+                    query.keyword,
+                    query.role_family_key,
+                    query.experience_key,
+                    query.experience_param,
+                    query.time_window_days,
+                    query.target_weight,
+                    query.url,
+                    query.query_id,
+                ],
+            )
+            return
         self.conn.execute(
             """
             INSERT INTO search_queries (
@@ -224,6 +293,13 @@ class JobStore:
             """,
             [status, result_count, pages_collected, last_error, query_id],
         )
+
+    def query_statuses(self, run_id: str) -> dict[str, str]:
+        rows = self.conn.execute(
+            "SELECT query_id, status FROM search_queries WHERE run_id = ?",
+            [run_id],
+        ).fetchall()
+        return {row[0]: row[1] for row in rows}
 
     def upsert_listing(self, listing: RawListing) -> None:
         snapshot_id = f"{listing.query_id}:{listing.page}:{listing.rank}:{listing.job_id}"
