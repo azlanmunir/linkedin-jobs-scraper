@@ -1,0 +1,28 @@
+name: smoke
+description: Tiny fixture-sized live run for validating the pipeline.
+database_path: data/db/jobs.duckdb
+raw_snapshot_dir: data/raw
+report_dir: reports
+target_population: Smoke test of recent tech postings
+time_window_days: 7
+max_pages_per_query: 1
+detail_enrichment: false
+headless: true
+request_delay_seconds:
+  min: 0.5
+  max: 1.0
+locations:
+  - key: sf_bay_area
+    name: SF Bay Area
+    linkedin_locations:
+      - San Francisco, CA
+    weight: 1.0
+role_families:
+  - key: swe
+    name: Software Engineering
+    keywords:
+      - software engineer
+experience_levels:
+  - key: mid_senior
+    linkedin_param: f_E=4
+    weight: 1.0

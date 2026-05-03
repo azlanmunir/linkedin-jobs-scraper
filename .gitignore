@@ -1,0 +1,26 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Generated pipeline state
+data/db/
+data/raw/
+data/processed/
+reports/
+*.duckdb
+*.duckdb.wal
+*.parquet
+
+# Local secrets and browser state
+.env
+.env.*
+!.env.example
+browser-state/
