@@ -507,6 +507,74 @@ class JobStore:
                 params = [run_id]
             self.conn.execute(sql, params)
             paths.append(path)
+        canonical_path = output_dir / "canonical_jobs.parquet"
+        canonical_output = sql_literal(str(canonical_path))
+        self.conn.execute(
+            f"""
+            COPY (
+                WITH ranked AS (
+                    SELECT *,
+                           ROW_NUMBER() OVER (
+                               PARTITION BY job_id
+                               ORDER BY parser_confidence DESC, scraped_at DESC, page ASC, rank ASC
+                           ) AS rn
+                    FROM listing_snapshots
+                    WHERE run_id = ?
+                ),
+                discovery AS (
+                    SELECT l.job_id,
+                           COUNT(*) AS discovery_paths,
+                           COUNT(DISTINCT l.query_id) AS discovery_queries,
+                           STRING_AGG(DISTINCT q.keyword, ', ' ORDER BY q.keyword)
+                               AS discovered_keywords,
+                           STRING_AGG(DISTINCT q.city_name, ', ' ORDER BY q.city_name)
+                               AS discovered_cities
+                    FROM listing_snapshots l
+                    LEFT JOIN search_queries q ON q.query_id = l.query_id
+                    WHERE l.run_id = ?
+                    GROUP BY l.job_id
+                )
+                SELECT r.run_id,
+                       r.job_id,
+                       r.url,
+                       r.title,
+                       r.company,
+                       r.location,
+                       r.posted_text,
+                       r.posted_at,
+                       q.city_name AS canonical_city_name,
+                       q.city_key AS canonical_city_key,
+                       q.keyword AS canonical_keyword,
+                       q.experience_key AS canonical_experience_key,
+                       q.target_weight AS canonical_target_weight,
+                       d.description,
+                       d.workplace_type,
+                       d.employment_type,
+                       d.salary_min,
+                       d.salary_max,
+                       d.salary_currency,
+                       d.applicants_signal,
+                       c.role_family,
+                       c.seniority,
+                       c.track,
+                       c.workplace AS classified_workplace,
+                       c.confidence AS classification_confidence,
+                       discovery.discovery_paths,
+                       discovery.discovery_queries,
+                       discovery.discovered_keywords,
+                       discovery.discovered_cities
+                FROM ranked r
+                LEFT JOIN search_queries q ON q.query_id = r.query_id
+                LEFT JOIN job_details d ON d.run_id = r.run_id AND d.job_id = r.job_id
+                LEFT JOIN classifications c ON c.run_id = r.run_id AND c.job_id = r.job_id
+                LEFT JOIN discovery ON discovery.job_id = r.job_id
+                WHERE r.rn = 1
+                ORDER BY r.job_id
+            ) TO {canonical_output} (FORMAT PARQUET)
+            """,
+            [run_id, run_id],
+        )
+        paths.append(canonical_path)
         return paths
 
 

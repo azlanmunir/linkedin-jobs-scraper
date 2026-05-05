@@ -28,6 +28,16 @@ def test_title_classifier_edge_cases() -> None:
     assert pm.role_family == "Product"
     assert pm.track == "Manager"
 
+    assert classify("Software Development Engineer").role_family == "SWE"
+    assert classify("Staff Engineer, Software").role_family == "SWE"
+    assert classify("Data Analyst").role_family == "Analytics/BI"
+    assert classify("Principal Software Automation/Test Engineer").role_family == "QA/Test"
+    assert classify("Solutions Architect, Data & AI").role_family == "Solutions/Sales Engineering"
+    assert classify("Cloud Infrastructure Engineer").role_family == "Infrastructure/Platform"
+    assert classify("Research Scientist, Information Quality").role_family == "Research"
+    assert classify("Firmware Engineer, ML Acceleration").role_family == "Hardware/Embedded"
+    assert classify("AI Trainer/Data Annotator").role_family == "Data Operations/Annotation"
+
 
 def test_workplace_classifier_uses_description_hint() -> None:
     result = classify_title(

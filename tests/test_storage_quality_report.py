@@ -88,7 +88,8 @@ def test_fixture_e2e_load_classify_validate_report(tmp_path: Path, monkeypatch) 
     assert "Technical Program Manager" not in report_text
 
     export_paths = store.export_parquet(RUN_ID, tmp_path / "processed" / RUN_ID)
-    assert len(export_paths) == 8
+    assert len(export_paths) == 9
     assert all(path.exists() for path in export_paths)
+    assert (tmp_path / "processed" / RUN_ID / "canonical_jobs.parquet").exists()
     assert not (Path.cwd() / RUN_ID).exists()
     store.close()

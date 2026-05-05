@@ -69,15 +69,22 @@ def add_duplicate_checks(store: JobStore, run_id: str, issues: list[QualityIssue
         "SELECT COUNT(DISTINCT job_id) FROM listing_snapshots WHERE run_id = ?",
         [run_id],
     )
-    if raw_count and unique_count / raw_count < 0.55:
+    if raw_count and unique_count and unique_count < raw_count:
         issues.append(
             QualityIssue(
                 run_id=run_id,
                 scope="listing_snapshots",
-                severity="warning",
-                code="high_duplicate_rate",
-                message="More than 45% of collected snapshots are duplicate job IDs.",
-                details={"raw": raw_count, "unique": unique_count},
+                severity="info",
+                code="discovery_overlap_deduped",
+                message=(
+                    "Overlapping queries discovered the same jobs; reports and canonical "
+                    "exports count each LinkedIn job ID once."
+                ),
+                details={
+                    "raw_snapshots": raw_count,
+                    "canonical_jobs": unique_count,
+                    "duplicate_discovery_paths": raw_count - unique_count,
+                },
             )
         )
 
@@ -179,14 +186,14 @@ def add_classification_checks(store: JobStore, run_id: str, issues: list[Quality
                 message="No Product or Program jobs classified; likely query or classifier issue.",
             )
         )
-    if counts.get("Other", 0) / total > 0.20:
+    if counts.get("Other", 0) / total > 0.12:
         issues.append(
             QualityIssue(
                 run_id=run_id,
                 scope="classifications",
                 severity="warning",
                 code="high_other_share",
-                message="Other role share is above 20%; taxonomy may be underfitting.",
+                message="Other role share is above 12%; taxonomy may be underfitting.",
                 details={"other": counts.get("Other", 0), "total": total},
             )
         )
@@ -224,7 +231,15 @@ def add_date_window_checks(
 
 def write_qa_report(path: Path, issues: list[QualityIssue]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    lines = ["# QA Report", "", f"Issues: {len(issues)}", ""]
+    actionable = [issue for issue in issues if issue.severity != "info"]
+    info_notes = [issue for issue in issues if issue.severity == "info"]
+    lines = [
+        "# QA Report",
+        "",
+        f"Warnings/errors: {len(actionable)}",
+        f"Informational notes: {len(info_notes)}",
+        "",
+    ]
     for issue in issues:
         lines.append(
             f"- **{issue.severity.upper()} {issue.code}** ({issue.scope}): {issue.message}"

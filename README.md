@@ -8,7 +8,9 @@ The original notebook proved the concept: collect recent LinkedIn job cards, com
 
 - A resumable DuckDB database of search runs, queries, listing snapshots, detail pages, classifications, and QA issues.
 - Raw HTML snapshots with content hashes so parser behavior is auditable.
-- Classified tech-job market tables for role family, seniority, track, and workplace mode.
+- Classified market tables for role family, seniority, track, and workplace mode.
+- A deduplicated `canonical_jobs.parquet` export where each LinkedIn job ID appears once, while
+  raw listing snapshots still preserve every discovery path for auditability.
 - Markdown and HTML reports with weighted vs raw estimates, confidence intervals, charts, and methodology notes.
 
 Generated data, snapshots, and reports are intentionally ignored by Git.
@@ -55,14 +57,20 @@ Useful paths:
 
 The default config defines a target population of recent US tech postings in SF Bay Area, Seattle, New York, Austin, and Boston. Searches are stratified by city, role-family keywords, and experience filters. The pipeline preserves all discovery paths for each job so a single canonical job can be deduplicated while still retaining which queries found it.
 
-The report includes raw and weighted estimates. Raw counts describe the collected corpus; weighted estimates adjust for the configured city/query sampling frame. Confidence intervals use bootstrap resampling over deduplicated jobs.
+The report includes raw and weighted estimates. Raw counts describe the deduplicated canonical
+corpus; weighted estimates adjust for the configured city/query sampling frame. Confidence
+intervals use bootstrap resampling over deduplicated jobs. Discovery overlap is reported
+separately so repeated appearances across queries do not inflate role, city, seniority, or AI/ML
+shares.
 
 ## Current Architecture
 
 - `src/linkedin_jobs/collector.py`: Playwright collection and detail enrichment.
 - `src/linkedin_jobs/parser.py`: HTML parsing for search cards and detail pages.
 - `src/linkedin_jobs/storage.py`: DuckDB schema, persistence, and dedup helpers.
-- `src/linkedin_jobs/classifier.py`: deterministic title/workplace classification.
+- `src/linkedin_jobs/classifier.py`: deterministic title/workplace classification with expanded
+  buckets for SWE, AI/ML, data, infrastructure, QA, research, technical go-to-market, and
+  non-tech leakage.
 - `src/linkedin_jobs/quality.py`: QA checks and issue persistence.
 - `src/linkedin_jobs/report.py`: Markdown/HTML report generation and SVG charts.
 - `src/linkedin_jobs/cli.py`: Typer CLI.

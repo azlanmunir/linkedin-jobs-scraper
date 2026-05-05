@@ -182,18 +182,18 @@ Hybrid DevOps Engineer,DevOps/SRE,Mid,IC
 Lead DevOps Engineer,DevOps/SRE,Senior,IC
 Principal DevOps Engineer,DevOps/SRE,Staff+,IC
 Staff DevOps Engineer,DevOps/SRE,Staff+,IC
-Cloud Engineer,DevOps/SRE,Mid,IC
-Remote Cloud Engineer,DevOps/SRE,Mid,IC
-Hybrid Cloud Engineer,DevOps/SRE,Mid,IC
-Lead Cloud Engineer,DevOps/SRE,Senior,IC
-Principal Cloud Engineer,DevOps/SRE,Staff+,IC
-Staff Cloud Engineer,DevOps/SRE,Staff+,IC
-Platform Engineer,DevOps/SRE,Mid,IC
-Remote Platform Engineer,DevOps/SRE,Mid,IC
-Hybrid Platform Engineer,DevOps/SRE,Mid,IC
-Lead Platform Engineer,DevOps/SRE,Senior,IC
-Principal Platform Engineer,DevOps/SRE,Staff+,IC
-Staff Platform Engineer,DevOps/SRE,Staff+,IC
+Cloud Engineer,Infrastructure/Platform,Mid,IC
+Remote Cloud Engineer,Infrastructure/Platform,Mid,IC
+Hybrid Cloud Engineer,Infrastructure/Platform,Mid,IC
+Lead Cloud Engineer,Infrastructure/Platform,Senior,IC
+Principal Cloud Engineer,Infrastructure/Platform,Staff+,IC
+Staff Cloud Engineer,Infrastructure/Platform,Staff+,IC
+Platform Engineer,Infrastructure/Platform,Mid,IC
+Remote Platform Engineer,Infrastructure/Platform,Mid,IC
+Hybrid Platform Engineer,Infrastructure/Platform,Mid,IC
+Lead Platform Engineer,Infrastructure/Platform,Senior,IC
+Principal Platform Engineer,Infrastructure/Platform,Staff+,IC
+Staff Platform Engineer,Infrastructure/Platform,Staff+,IC
 Security Engineer,Security,Mid,IC
 Remote Security Engineer,Security,Mid,IC
 Hybrid Security Engineer,Security,Mid,IC
@@ -282,18 +282,18 @@ Hybrid UI Designer,Design,Mid,IC
 Lead UI Designer,Design,Senior,IC
 Principal UI Designer,Design,Staff+,IC
 Staff UI Designer,Design,Staff+,IC
-Recruiter,Other,Mid,Non-technical
-Remote Recruiter,Other,Mid,Non-technical
-Hybrid Recruiter,Other,Mid,Non-technical
-Lead Recruiter,Other,Senior,Non-technical
-Principal Recruiter,Other,Staff+,Non-technical
-Staff Recruiter,Other,Staff+,Non-technical
-Sales Engineer,Other,Mid,IC
-Remote Sales Engineer,Other,Mid,IC
-Hybrid Sales Engineer,Other,Mid,IC
-Lead Sales Engineer,Other,Senior,IC
-Principal Sales Engineer,Other,Staff+,IC
-Staff Sales Engineer,Other,Staff+,IC
+Recruiter,People/Recruiting,Mid,Non-technical
+Remote Recruiter,People/Recruiting,Mid,Non-technical
+Hybrid Recruiter,People/Recruiting,Mid,Non-technical
+Lead Recruiter,People/Recruiting,Senior,Non-technical
+Principal Recruiter,People/Recruiting,Staff+,Non-technical
+Staff Recruiter,People/Recruiting,Staff+,Non-technical
+Sales Engineer,Solutions/Sales Engineering,Mid,IC
+Remote Sales Engineer,Solutions/Sales Engineering,Mid,IC
+Hybrid Sales Engineer,Solutions/Sales Engineering,Mid,IC
+Lead Sales Engineer,Solutions/Sales Engineering,Senior,IC
+Principal Sales Engineer,Solutions/Sales Engineering,Staff+,IC
+Staff Sales Engineer,Solutions/Sales Engineering,Staff+,IC
 Entry Level Software Engineer,SWE,Entry,IC
 Junior Backend Engineer,SWE,Entry,IC
 New Grad Frontend Engineer,SWE,Entry,IC

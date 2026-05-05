@@ -20,6 +20,7 @@ def generate_report(store: JobStore, *, run_id: str, report_root: Path) -> dict[
 
     jobs = fetch_classified_jobs(store, run_id)
     issues = fetch_quality_issues(store, run_id)
+    collection_metrics = fetch_collection_metrics(store, run_id)
     role_counts = Counter(job["role_family"] for job in jobs)
     seniority_counts = Counter(job["seniority"] for job in jobs)
     weighted_role = weighted_counts(jobs, "role_family")
@@ -35,6 +36,7 @@ def generate_report(store: JobStore, *, run_id: str, report_root: Path) -> dict[
         run_id=run_id,
         jobs=jobs,
         issues=issues,
+        collection_metrics=collection_metrics,
         role_counts=role_counts,
         seniority_counts=seniority_counts,
         weighted_role=weighted_role,
@@ -104,11 +106,46 @@ def fetch_quality_issues(store: JobStore, run_id: str) -> list[QualityIssue]:
     return issues
 
 
+def fetch_collection_metrics(store: JobStore, run_id: str) -> dict[str, float]:
+    raw_row = store.conn.execute(
+        """
+        SELECT COUNT(*) AS raw_snapshots,
+               COUNT(DISTINCT job_id) AS canonical_jobs
+        FROM listing_snapshots
+        WHERE run_id = ?
+        """,
+        [run_id],
+    ).fetchone()
+    path_row = store.conn.execute(
+        """
+        SELECT AVG(discovery_paths) AS avg_discovery_paths,
+               MAX(discovery_paths) AS max_discovery_paths
+        FROM (
+            SELECT job_id, COUNT(*) AS discovery_paths
+            FROM listing_snapshots
+            WHERE run_id = ?
+            GROUP BY job_id
+        )
+        """,
+        [run_id],
+    ).fetchone()
+    raw_snapshots = int(raw_row[0] or 0) if raw_row else 0
+    canonical_jobs = int(raw_row[1] or 0) if raw_row else 0
+    return {
+        "raw_snapshots": raw_snapshots,
+        "canonical_jobs": canonical_jobs,
+        "duplicate_discovery_paths": max(raw_snapshots - canonical_jobs, 0),
+        "avg_discovery_paths": float(path_row[0] or 0.0) if path_row else 0.0,
+        "max_discovery_paths": float(path_row[1] or 0.0) if path_row else 0.0,
+    }
+
+
 def render_markdown(
     *,
     run_id: str,
     jobs: list[dict[str, Any]],
     issues: list[QualityIssue],
+    collection_metrics: dict[str, float],
     role_counts: Counter[str],
     seniority_counts: Counter[str],
     weighted_role: dict[str, float],
@@ -118,15 +155,22 @@ def render_markdown(
     total = len(jobs)
     ai_share = share_with_ci([job["role_family"] for job in jobs], "AI/ML")
     junior_share = share_with_ci([job["seniority"] for job in jobs], "Entry")
+    actionable_issues = [issue for issue in issues if issue.severity != "info"]
     lines = [
         f"# LinkedIn Jobs Market Report: `{run_id}`",
         "",
         "## Executive Summary",
         "",
         f"- Deduplicated jobs analyzed: {total:,}",
+        f"- Raw discovery snapshots retained: {collection_metrics['raw_snapshots']:,.0f}",
+        "- Role, seniority, city, and weighted estimates count each LinkedIn job ID once.",
         f"- AI/ML share: {format_ci(ai_share)}",
         f"- Entry-level share: {format_ci(junior_share)}",
-        f"- QA issues: {len(issues)}",
+        f"- QA warnings/errors: {len(actionable_issues)}",
+        "",
+        "## Discovery Overlap And Deduplication",
+        "",
+        table_from_metrics(collection_metrics),
         "",
         "## Role Family Distribution",
         "",
@@ -174,6 +218,21 @@ def table_from_counter(counter: Counter[str], total: int) -> str:
     lines = ["| Segment | Jobs | Share |", "|---|---:|---:|"]
     for key, count in counter.most_common():
         lines.append(f"| {key or 'Unknown'} | {count:,} | {count / total:.1%} |")
+    return "\n".join(lines)
+
+
+def table_from_metrics(metrics: dict[str, float]) -> str:
+    lines = ["| Metric | Value |", "|---|---:|"]
+    lines.append(f"| Raw listing snapshots | {metrics['raw_snapshots']:,.0f} |")
+    lines.append(f"| Canonical jobs after LinkedIn ID dedupe | {metrics['canonical_jobs']:,.0f} |")
+    lines.append(
+        f"| Duplicate discovery paths excluded from estimates | "
+        f"{metrics['duplicate_discovery_paths']:,.0f} |"
+    )
+    lines.append(
+        f"| Average discovery paths per canonical job | {metrics['avg_discovery_paths']:.1f} |"
+    )
+    lines.append(f"| Maximum discovery paths for one job | {metrics['max_discovery_paths']:,.0f} |")
     return "\n".join(lines)
 
 
