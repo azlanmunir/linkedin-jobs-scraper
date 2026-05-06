@@ -151,6 +151,7 @@
       border-radius: 8px;
       padding: 16px;
       min-height: 116px;
+      min-width: 0;
     }
 
     .metric b {
@@ -179,6 +180,7 @@
     .source-strip div {
       border-right: 1px solid var(--line);
       padding: 12px 14px;
+      min-width: 0;
     }
 
     .source-strip div:last-child {
@@ -204,12 +206,14 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 18px;
+      min-width: 0;
     }
 
     .chart {
       width: 100%;
       height: auto;
       display: block;
+      overflow: hidden;
     }
 
     .takeaways {
@@ -460,7 +464,7 @@
       <div class="grid">
         <div class="panel">
           <h3>Macro Role Groups</h3>
-          <svg class="chart" viewBox="0 0 640 280" role="img" aria-label="Macro role group shares">
+          <svg class="chart" viewBox="0 0 680 280" role="img" aria-label="Macro role group shares">
             <text x="0" y="18" font-size="13" fill="#5b616e">Share of canonical jobs</text>
             <g font-size="13" fill="#171717">
               <text x="0" y="58">Engineering / Infrastructure</text>
@@ -516,7 +520,7 @@
       <div class="grid">
         <div class="panel">
           <h3>AI By City</h3>
-          <svg class="chart" viewBox="0 0 640 300" role="img" aria-label="AI share by city">
+          <svg class="chart" viewBox="0 0 680 300" role="img" aria-label="AI share by city">
             <text x="0" y="18" font-size="13" fill="#5b616e">Dedicated AI/ML share and broader AI/data/research share</text>
             <g font-size="13" fill="#171717">
               <text x="0" y="58">SF Bay Area</text>
@@ -583,7 +587,7 @@
       <div class="grid">
         <div class="panel">
           <h3>Seniority Mix</h3>
-          <svg class="chart" viewBox="0 0 640 280" role="img" aria-label="Seniority mix">
+          <svg class="chart" viewBox="0 0 680 280" role="img" aria-label="Seniority mix">
             <text x="0" y="18" font-size="13" fill="#5b616e">Share of canonical jobs</text>
             <g font-size="13" fill="#171717">
               <text x="0" y="58">Mid</text>
@@ -659,7 +663,7 @@
 
         <div class="panel">
           <h3>Workplace Mode</h3>
-          <svg class="chart" viewBox="0 0 640 250" role="img" aria-label="Workplace mode">
+          <svg class="chart" viewBox="0 0 680 250" role="img" aria-label="Workplace mode">
             <text x="0" y="18" font-size="13" fill="#5b616e">Share of all canonical jobs</text>
             <g font-size="13" fill="#171717">
               <text x="0" y="58">Unknown</text>
