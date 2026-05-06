@@ -1,0 +1,305 @@
+title,expected_role_family,expected_seniority,expected_track
+Chief Data Officer,Executive,Executive,Executive
+Remote Chief Data Officer,Executive,Executive,Executive
+Hybrid Chief Data Officer,Executive,Executive,Executive
+Lead Chief Data Officer,Executive,Executive,Executive
+Principal Chief Data Officer,Executive,Executive,Executive
+Staff Chief Data Officer,Executive,Executive,Executive
+Chief Technology Officer,Executive,Executive,Executive
+Remote Chief Technology Officer,Executive,Executive,Executive
+Hybrid Chief Technology Officer,Executive,Executive,Executive
+Lead Chief Technology Officer,Executive,Executive,Executive
+Principal Chief Technology Officer,Executive,Executive,Executive
+Staff Chief Technology Officer,Executive,Executive,Executive
+Chief Information Security Officer,Executive,Executive,Executive
+Remote Chief Information Security Officer,Executive,Executive,Executive
+Hybrid Chief Information Security Officer,Executive,Executive,Executive
+Lead Chief Information Security Officer,Executive,Executive,Executive
+Principal Chief Information Security Officer,Executive,Executive,Executive
+Staff Chief Information Security Officer,Executive,Executive,Executive
+"Chief of Staff, Product",Management,Director+,Manager
+"Remote Chief of Staff, Product",Management,Director+,Manager
+"Hybrid Chief of Staff, Product",Management,Director+,Manager
+"Lead Chief of Staff, Product",Management,Director+,Manager
+"Principal Chief of Staff, Product",Management,Director+,Manager
+"Staff Chief of Staff, Product",Management,Director+,Manager
+VP of Engineering,Management,Director+,Manager
+Remote VP of Engineering,Management,Director+,Manager
+Hybrid VP of Engineering,Management,Director+,Manager
+Lead VP of Engineering,Management,Director+,Manager
+Principal VP of Engineering,Management,Director+,Manager
+Staff VP of Engineering,Management,Director+,Manager
+"Vice President, Product",Management,Director+,Manager
+"Remote Vice President, Product",Management,Director+,Manager
+"Hybrid Vice President, Product",Management,Director+,Manager
+"Lead Vice President, Product",Management,Director+,Manager
+"Principal Vice President, Product",Management,Director+,Manager
+"Staff Vice President, Product",Management,Director+,Manager
+Director of Engineering,Management,Director+,Manager
+Remote Director of Engineering,Management,Director+,Manager
+Hybrid Director of Engineering,Management,Director+,Manager
+Lead Director of Engineering,Management,Director+,Manager
+Principal Director of Engineering,Management,Director+,Manager
+Staff Director of Engineering,Management,Director+,Manager
+Head of Data Science,Management,Director+,Manager
+Remote Head of Data Science,Management,Director+,Manager
+Hybrid Head of Data Science,Management,Director+,Manager
+Lead Head of Data Science,Management,Director+,Manager
+Principal Head of Data Science,Management,Director+,Manager
+Staff Head of Data Science,Management,Director+,Manager
+"Engineering Manager, Backend",Management,Manager,Manager
+"Remote Engineering Manager, Backend",Management,Manager,Manager
+"Hybrid Engineering Manager, Backend",Management,Manager,Manager
+"Lead Engineering Manager, Backend",Management,Senior,Manager
+"Principal Engineering Manager, Backend",Management,Staff+,Manager
+"Staff Engineering Manager, Backend",Management,Staff+,Manager
+Development Manager,Management,Manager,Manager
+Remote Development Manager,Management,Manager,Manager
+Hybrid Development Manager,Management,Manager,Manager
+Lead Development Manager,Management,Senior,Manager
+Principal Development Manager,Management,Staff+,Manager
+Staff Development Manager,Management,Staff+,Manager
+"Product Manager, Growth",Product,Manager,Manager
+"Remote Product Manager, Growth",Product,Manager,Manager
+"Hybrid Product Manager, Growth",Product,Manager,Manager
+"Lead Product Manager, Growth",Product,Senior,Manager
+"Principal Product Manager, Growth",Product,Staff+,Manager
+"Staff Product Manager, Growth",Product,Staff+,Manager
+Senior Product Manager,Product,Senior,Manager
+Remote Senior Product Manager,Product,Senior,Manager
+Hybrid Senior Product Manager,Product,Senior,Manager
+Lead Senior Product Manager,Product,Senior,Manager
+Principal Senior Product Manager,Product,Staff+,Manager
+Staff Senior Product Manager,Product,Staff+,Manager
+Product Owner,Product,Mid,Manager
+Remote Product Owner,Product,Mid,Manager
+Hybrid Product Owner,Product,Mid,Manager
+Lead Product Owner,Product,Senior,Manager
+Principal Product Owner,Product,Staff+,Manager
+Staff Product Owner,Product,Staff+,Manager
+"Technical Program Manager, AI Platform",Program,Manager,Manager
+"Remote Technical Program Manager, AI Platform",Program,Manager,Manager
+"Hybrid Technical Program Manager, AI Platform",Program,Manager,Manager
+"Lead Technical Program Manager, AI Platform",Program,Senior,Manager
+"Principal Technical Program Manager, AI Platform",Program,Staff+,Manager
+"Staff Technical Program Manager, AI Platform",Program,Staff+,Manager
+Staff Technical Program Manager,Program,Staff+,Manager
+Remote Staff Technical Program Manager,Program,Staff+,Manager
+Hybrid Staff Technical Program Manager,Program,Staff+,Manager
+Lead Staff Technical Program Manager,Program,Staff+,Manager
+Principal Staff Technical Program Manager,Program,Staff+,Manager
+"Program Manager, Infrastructure",Program,Manager,Manager
+"Remote Program Manager, Infrastructure",Program,Manager,Manager
+"Hybrid Program Manager, Infrastructure",Program,Manager,Manager
+"Lead Program Manager, Infrastructure",Program,Senior,Manager
+"Principal Program Manager, Infrastructure",Program,Staff+,Manager
+"Staff Program Manager, Infrastructure",Program,Staff+,Manager
+Machine Learning Engineer,AI/ML,Mid,IC
+Remote Machine Learning Engineer,AI/ML,Mid,IC
+Hybrid Machine Learning Engineer,AI/ML,Mid,IC
+Lead Machine Learning Engineer,AI/ML,Senior,IC
+Principal Machine Learning Engineer,AI/ML,Staff+,IC
+Staff Machine Learning Engineer,AI/ML,Staff+,IC
+Senior Machine Learning Engineer,AI/ML,Senior,IC
+Remote Senior Machine Learning Engineer,AI/ML,Senior,IC
+Hybrid Senior Machine Learning Engineer,AI/ML,Senior,IC
+Lead Senior Machine Learning Engineer,AI/ML,Senior,IC
+Principal Senior Machine Learning Engineer,AI/ML,Staff+,IC
+Staff Senior Machine Learning Engineer,AI/ML,Staff+,IC
+Staff ML Engineer,AI/ML,Staff+,IC
+Remote Staff ML Engineer,AI/ML,Staff+,IC
+Hybrid Staff ML Engineer,AI/ML,Staff+,IC
+Lead Staff ML Engineer,AI/ML,Staff+,IC
+Principal Staff ML Engineer,AI/ML,Staff+,IC
+AI Engineer,AI/ML,Mid,IC
+Remote AI Engineer,AI/ML,Mid,IC
+Hybrid AI Engineer,AI/ML,Mid,IC
+Lead AI Engineer,AI/ML,Senior,IC
+Principal AI Engineer,AI/ML,Staff+,IC
+Staff AI Engineer,AI/ML,Staff+,IC
+MLOps Engineer,AI/ML,Mid,IC
+Remote MLOps Engineer,AI/ML,Mid,IC
+Hybrid MLOps Engineer,AI/ML,Mid,IC
+Lead MLOps Engineer,AI/ML,Senior,IC
+Principal MLOps Engineer,AI/ML,Staff+,IC
+Staff MLOps Engineer,AI/ML,Staff+,IC
+Computer Vision Engineer,AI/ML,Mid,IC
+Remote Computer Vision Engineer,AI/ML,Mid,IC
+Hybrid Computer Vision Engineer,AI/ML,Mid,IC
+Lead Computer Vision Engineer,AI/ML,Senior,IC
+Principal Computer Vision Engineer,AI/ML,Staff+,IC
+Staff Computer Vision Engineer,AI/ML,Staff+,IC
+Data Scientist,Data Science,Mid,IC
+Remote Data Scientist,Data Science,Mid,IC
+Hybrid Data Scientist,Data Science,Mid,IC
+Lead Data Scientist,Data Science,Senior,IC
+Principal Data Scientist,Data Science,Staff+,IC
+Staff Data Scientist,Data Science,Staff+,IC
+Senior Data Scientist,Data Science,Senior,IC
+Remote Senior Data Scientist,Data Science,Senior,IC
+Hybrid Senior Data Scientist,Data Science,Senior,IC
+Lead Senior Data Scientist,Data Science,Senior,IC
+Principal Senior Data Scientist,Data Science,Staff+,IC
+Staff Senior Data Scientist,Data Science,Staff+,IC
+Principal Data Scientist,Data Science,Staff+,IC
+Remote Principal Data Scientist,Data Science,Staff+,IC
+Hybrid Principal Data Scientist,Data Science,Staff+,IC
+Lead Principal Data Scientist,Data Science,Staff+,IC
+Staff Principal Data Scientist,Data Science,Staff+,IC
+Data Engineer,Data Engineering,Mid,IC
+Remote Data Engineer,Data Engineering,Mid,IC
+Hybrid Data Engineer,Data Engineering,Mid,IC
+Lead Data Engineer,Data Engineering,Senior,IC
+Principal Data Engineer,Data Engineering,Staff+,IC
+Staff Data Engineer,Data Engineering,Staff+,IC
+Analytics Engineer,Data Engineering,Mid,IC
+Remote Analytics Engineer,Data Engineering,Mid,IC
+Hybrid Analytics Engineer,Data Engineering,Mid,IC
+Lead Analytics Engineer,Data Engineering,Senior,IC
+Principal Analytics Engineer,Data Engineering,Staff+,IC
+Staff Analytics Engineer,Data Engineering,Staff+,IC
+Senior Data Engineer,Data Engineering,Senior,IC
+Remote Senior Data Engineer,Data Engineering,Senior,IC
+Hybrid Senior Data Engineer,Data Engineering,Senior,IC
+Lead Senior Data Engineer,Data Engineering,Senior,IC
+Principal Senior Data Engineer,Data Engineering,Staff+,IC
+Staff Senior Data Engineer,Data Engineering,Staff+,IC
+Site Reliability Engineer,DevOps/SRE,Mid,IC
+Remote Site Reliability Engineer,DevOps/SRE,Mid,IC
+Hybrid Site Reliability Engineer,DevOps/SRE,Mid,IC
+Lead Site Reliability Engineer,DevOps/SRE,Senior,IC
+Principal Site Reliability Engineer,DevOps/SRE,Staff+,IC
+Staff Site Reliability Engineer,DevOps/SRE,Staff+,IC
+Senior SRE,DevOps/SRE,Senior,IC
+Remote Senior SRE,DevOps/SRE,Senior,IC
+Hybrid Senior SRE,DevOps/SRE,Senior,IC
+Lead Senior SRE,DevOps/SRE,Senior,IC
+Principal Senior SRE,DevOps/SRE,Staff+,IC
+Staff Senior SRE,DevOps/SRE,Staff+,IC
+DevOps Engineer,DevOps/SRE,Mid,IC
+Remote DevOps Engineer,DevOps/SRE,Mid,IC
+Hybrid DevOps Engineer,DevOps/SRE,Mid,IC
+Lead DevOps Engineer,DevOps/SRE,Senior,IC
+Principal DevOps Engineer,DevOps/SRE,Staff+,IC
+Staff DevOps Engineer,DevOps/SRE,Staff+,IC
+Cloud Engineer,Infrastructure/Platform,Mid,IC
+Remote Cloud Engineer,Infrastructure/Platform,Mid,IC
+Hybrid Cloud Engineer,Infrastructure/Platform,Mid,IC
+Lead Cloud Engineer,Infrastructure/Platform,Senior,IC
+Principal Cloud Engineer,Infrastructure/Platform,Staff+,IC
+Staff Cloud Engineer,Infrastructure/Platform,Staff+,IC
+Platform Engineer,Infrastructure/Platform,Mid,IC
+Remote Platform Engineer,Infrastructure/Platform,Mid,IC
+Hybrid Platform Engineer,Infrastructure/Platform,Mid,IC
+Lead Platform Engineer,Infrastructure/Platform,Senior,IC
+Principal Platform Engineer,Infrastructure/Platform,Staff+,IC
+Staff Platform Engineer,Infrastructure/Platform,Staff+,IC
+Security Engineer,Security,Mid,IC
+Remote Security Engineer,Security,Mid,IC
+Hybrid Security Engineer,Security,Mid,IC
+Lead Security Engineer,Security,Senior,IC
+Principal Security Engineer,Security,Staff+,IC
+Staff Security Engineer,Security,Staff+,IC
+Senior Application Security Engineer,Security,Senior,IC
+Remote Senior Application Security Engineer,Security,Senior,IC
+Hybrid Senior Application Security Engineer,Security,Senior,IC
+Lead Senior Application Security Engineer,Security,Senior,IC
+Principal Senior Application Security Engineer,Security,Staff+,IC
+Staff Senior Application Security Engineer,Security,Staff+,IC
+Cybersecurity Engineer,Security,Mid,IC
+Remote Cybersecurity Engineer,Security,Mid,IC
+Hybrid Cybersecurity Engineer,Security,Mid,IC
+Lead Cybersecurity Engineer,Security,Senior,IC
+Principal Cybersecurity Engineer,Security,Staff+,IC
+Staff Cybersecurity Engineer,Security,Staff+,IC
+Software Engineer,SWE,Mid,IC
+Remote Software Engineer,SWE,Mid,IC
+Hybrid Software Engineer,SWE,Mid,IC
+Lead Software Engineer,SWE,Senior,IC
+Principal Software Engineer,SWE,Staff+,IC
+Staff Software Engineer,SWE,Staff+,IC
+Senior Software Engineer,SWE,Senior,IC
+Remote Senior Software Engineer,SWE,Senior,IC
+Hybrid Senior Software Engineer,SWE,Senior,IC
+Lead Senior Software Engineer,SWE,Senior,IC
+Principal Senior Software Engineer,SWE,Staff+,IC
+Staff Senior Software Engineer,SWE,Staff+,IC
+Staff Software Engineer,SWE,Staff+,IC
+Remote Staff Software Engineer,SWE,Staff+,IC
+Hybrid Staff Software Engineer,SWE,Staff+,IC
+Lead Staff Software Engineer,SWE,Staff+,IC
+Principal Staff Software Engineer,SWE,Staff+,IC
+Principal Software Engineer,SWE,Staff+,IC
+Remote Principal Software Engineer,SWE,Staff+,IC
+Hybrid Principal Software Engineer,SWE,Staff+,IC
+Lead Principal Software Engineer,SWE,Staff+,IC
+Staff Principal Software Engineer,SWE,Staff+,IC
+Backend Engineer,SWE,Mid,IC
+Remote Backend Engineer,SWE,Mid,IC
+Hybrid Backend Engineer,SWE,Mid,IC
+Lead Backend Engineer,SWE,Senior,IC
+Principal Backend Engineer,SWE,Staff+,IC
+Staff Backend Engineer,SWE,Staff+,IC
+Frontend Engineer,SWE,Mid,IC
+Remote Frontend Engineer,SWE,Mid,IC
+Hybrid Frontend Engineer,SWE,Mid,IC
+Lead Frontend Engineer,SWE,Senior,IC
+Principal Frontend Engineer,SWE,Staff+,IC
+Staff Frontend Engineer,SWE,Staff+,IC
+Full Stack Engineer,SWE,Mid,IC
+Remote Full Stack Engineer,SWE,Mid,IC
+Hybrid Full Stack Engineer,SWE,Mid,IC
+Lead Full Stack Engineer,SWE,Senior,IC
+Principal Full Stack Engineer,SWE,Staff+,IC
+Staff Full Stack Engineer,SWE,Staff+,IC
+iOS Engineer,SWE,Mid,IC
+Remote iOS Engineer,SWE,Mid,IC
+Hybrid iOS Engineer,SWE,Mid,IC
+Lead iOS Engineer,SWE,Senior,IC
+Principal iOS Engineer,SWE,Staff+,IC
+Staff iOS Engineer,SWE,Staff+,IC
+Android Engineer,SWE,Mid,IC
+Remote Android Engineer,SWE,Mid,IC
+Hybrid Android Engineer,SWE,Mid,IC
+Lead Android Engineer,SWE,Senior,IC
+Principal Android Engineer,SWE,Staff+,IC
+Staff Android Engineer,SWE,Staff+,IC
+UX Designer,Design,Mid,IC
+Remote UX Designer,Design,Mid,IC
+Hybrid UX Designer,Design,Mid,IC
+Lead UX Designer,Design,Senior,IC
+Principal UX Designer,Design,Staff+,IC
+Staff UX Designer,Design,Staff+,IC
+Senior Product Designer,Design,Senior,IC
+Remote Senior Product Designer,Design,Senior,IC
+Hybrid Senior Product Designer,Design,Senior,IC
+Lead Senior Product Designer,Design,Senior,IC
+Principal Senior Product Designer,Design,Staff+,IC
+Staff Senior Product Designer,Design,Staff+,IC
+UI Designer,Design,Mid,IC
+Remote UI Designer,Design,Mid,IC
+Hybrid UI Designer,Design,Mid,IC
+Lead UI Designer,Design,Senior,IC
+Principal UI Designer,Design,Staff+,IC
+Staff UI Designer,Design,Staff+,IC
+Recruiter,People/Recruiting,Mid,Non-technical
+Remote Recruiter,People/Recruiting,Mid,Non-technical
+Hybrid Recruiter,People/Recruiting,Mid,Non-technical
+Lead Recruiter,People/Recruiting,Senior,Non-technical
+Principal Recruiter,People/Recruiting,Staff+,Non-technical
+Staff Recruiter,People/Recruiting,Staff+,Non-technical
+Sales Engineer,Solutions/Sales Engineering,Mid,IC
+Remote Sales Engineer,Solutions/Sales Engineering,Mid,IC
+Hybrid Sales Engineer,Solutions/Sales Engineering,Mid,IC
+Lead Sales Engineer,Solutions/Sales Engineering,Senior,IC
+Principal Sales Engineer,Solutions/Sales Engineering,Staff+,IC
+Staff Sales Engineer,Solutions/Sales Engineering,Staff+,IC
+Entry Level Software Engineer,SWE,Entry,IC
+Junior Backend Engineer,SWE,Entry,IC
+New Grad Frontend Engineer,SWE,Entry,IC
+Software Engineer Intern,SWE,Intern,IC
+Data Science Intern,Data Science,Intern,IC
+Junior Data Engineer,Data Engineering,Entry,IC
+Entry Level Product Manager,Product,Entry,Manager
+Junior Technical Program Manager,Program,Entry,Manager
+Distinguished Software Engineer,SWE,Staff+,IC

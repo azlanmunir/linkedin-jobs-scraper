@@ -1,0 +1,94 @@
+name: market_us_tech
+description: Recent US tech-job market sample across five major hubs.
+database_path: data/db/jobs.duckdb
+raw_snapshot_dir: data/raw
+report_dir: reports
+target_population: US tech postings in selected hubs from the last 7 days
+time_window_days: 7
+max_pages_per_query: 3
+detail_enrichment: true
+headless: true
+request_delay_seconds:
+  min: 2.0
+  max: 5.0
+locations:
+  - key: sf_bay_area
+    name: SF Bay Area
+    linkedin_locations:
+      - San Francisco, CA
+      - San Jose, CA
+      - Palo Alto, CA
+    weight: 0.35
+  - key: seattle
+    name: Seattle
+    linkedin_locations:
+      - Seattle, WA
+    weight: 0.20
+  - key: nyc
+    name: New York
+    linkedin_locations:
+      - New York, NY
+    weight: 0.20
+  - key: austin
+    name: Austin
+    linkedin_locations:
+      - Austin, TX
+    weight: 0.15
+  - key: boston
+    name: Boston
+    linkedin_locations:
+      - Boston, MA
+    weight: 0.10
+role_families:
+  - key: swe
+    name: Software Engineering
+    keywords:
+      - software engineer
+      - backend engineer
+      - frontend engineer
+      - full stack engineer
+      - platform engineer
+  - key: ai_ml
+    name: AI/ML
+    keywords:
+      - machine learning engineer
+      - ai engineer
+      - ml engineer
+      - mlops engineer
+  - key: data
+    name: Data
+    keywords:
+      - data scientist
+      - data engineer
+      - analytics engineer
+      - data analyst
+  - key: infrastructure
+    name: Infrastructure
+    keywords:
+      - site reliability engineer
+      - sre
+      - devops engineer
+      - cloud engineer
+      - security engineer
+  - key: product_program
+    name: Product and Program
+    keywords:
+      - product manager
+      - technical program manager
+      - program manager
+experience_levels:
+  - key: entry
+    linkedin_param: f_E=2
+    weight: 0.15
+  - key: associate
+    linkedin_param: f_E=3
+    weight: 0.25
+  - key: mid_senior
+    linkedin_param: f_E=4
+    weight: 0.45
+  - key: director
+    linkedin_param: f_E=5
+    weight: 0.10
+  - key: executive
+    linkedin_param: f_E=6
+    weight: 0.05
